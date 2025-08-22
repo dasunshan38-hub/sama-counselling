@@ -147,6 +147,56 @@
         transform: translateY(-2px);
       }
 
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        font-size: 1.8rem;
+        color: var(--primary);
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(253, 252, 251, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-nav.active {
+        right: 0;
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .mobile-nav-links a {
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-nav-links a:hover,
+      .mobile-nav-links a.active {
+        color: var(--primary);
+      }
+
       /* Page Sections */
       .page {
         display: none;
@@ -589,8 +639,8 @@
           display: none;
         }
 
-        .nav-center-logo {
-          display: none;
+        .hamburger {
+          display: block;
         }
 
         .hero-container {
@@ -708,7 +758,19 @@
         <div class="nav-center-logo">
           <img src="./logo.png" alt="WellnessTherapy Logo" />
         </div>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
         <ul class="nav-links">
+          <li>
+            <a href="#" onclick="showPage('home')" class="active">Home</a>
+          </li>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="mobile-nav">
+        <ul class="mobile-nav-links">
           <li>
             <a href="#" onclick="showPage('home')" class="active">Home</a>
           </li>
@@ -1006,9 +1068,8 @@
               </div>
               <p style="font-style: italic; margin-bottom: 1.5rem">
                 "The combination of counselling and physiotherapy has been
-                life-changing. Samadhi helped me address both my chronic pain
-                and the anxiety it was causing. I finally feel like myself
-                again."
+                life-changing. Sarah helped me address both my chronic pain and
+                the anxiety it was causing. I finally feel like myself again."
               </p>
               <div style="display: flex; align-items: center; gap: 1rem">
                 <div
@@ -1094,7 +1155,7 @@
                 "
               </div>
               <p style="font-style: italic; margin-bottom: 1.5rem">
-                "Samadhi's compassionate approach made me feel heard and
+                "Sarah's compassionate approach made me feel heard and
                 understood. The techniques I learned have not only improved my
                 mental health but also my physical well-being."
               </p>
@@ -1325,10 +1386,9 @@
 
               <div class="qualifications">
                 <strong>Education & Certifications:</strong><br />
-                • Master of Arts in Clinical Psychology - University of Sri
-                Jayewardenepura<br />
-                • Bachelor of Science in Physiotherapy - University of Sri
-                Jayewardenepura<br />
+                • Master of Arts in Clinical Psychology - University of
+                Melbourne<br />
+                • Bachelor of Science in Physiotherapy - Monash University<br />
                 • Advanced Certificate in Cognitive Behavioral Therapy<br />
                 • Certified Trauma-Informed Care Practitioner<br />
                 • Licensed Remedial Massage Therapist<br />
@@ -1594,13 +1654,6 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <svg class="footer-svg" width="80" height="80" viewBox="0 0 80 80">
-        <path
-          fill="var(--accent-rose)"
-          fill-opacity="0.2"
-          d="M40 10 C25 10 15 25 15 40 C15 55 25 65 40 65 C55 65 65 55 65 40 C65 25 55 10 40 10 Z M40 20 C48.284 20 55 26.716 55 35 C55 43.284 48.284 50 40 50 C31.716 50 25 43.284 25 35 C25 26.716 31.716 20 40 20 Z"
-        />
-      </svg>
       <div class="container">
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1627,15 +1680,42 @@
         document.getElementById(pageId).classList.add("active");
 
         // Update navigation
-        const navLinks = document.querySelectorAll(".nav-links a");
+        const navLinks = document.querySelectorAll(
+          ".nav-links a, .mobile-nav-links a"
+        );
         navLinks.forEach((link) => {
           link.classList.remove("active");
+          if (link.getAttribute("onclick").includes(pageId)) {
+            link.classList.add("active");
+          }
         });
-        event.target.classList.add("active");
+
+        // Close mobile menu
+        const mobileNav = document.querySelector(".mobile-nav");
+        mobileNav.classList.remove("active");
+        const hamburger = document.querySelector(".hamburger i");
+        hamburger.classList.remove("fa-times");
+        hamburger.classList.add("fa-bars");
 
         // Scroll to top
         window.scrollTo(0, 0);
       }
+
+      // Hamburger menu toggle
+      document
+        .querySelector(".hamburger")
+        .addEventListener("click", function () {
+          const mobileNav = document.querySelector(".mobile-nav");
+          const hamburgerIcon = this.querySelector("i");
+          mobileNav.classList.toggle("active");
+          if (mobileNav.classList.contains("active")) {
+            hamburgerIcon.classList.remove("fa-bars");
+            hamburgerIcon.classList.add("fa-times");
+          } else {
+            hamburgerIcon.classList.remove("fa-times");
+            hamburgerIcon.classList.add("fa-bars");
+          }
+        });
 
       // Form submission
       document.querySelector("form").addEventListener("submit", function (e) {
