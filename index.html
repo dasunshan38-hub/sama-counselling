@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supporting Your Journey to Wellness</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary: #a389d4;
+        --accent-rose: #f4dde5;
+        --accent-sage: #b8cbb8;
+        --background: #fdfcfb;
+        --text: #333333;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--background);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(253, 252, 251, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo-container {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-center-logo {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .nav-center-logo img {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.3s ease;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .nav-center-logo img:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .nav-links {
+        flex: 1;
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        justify-content: flex-end;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 400;
+        transition: color 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* Page Sections */
+      .page {
+        display: none;
+        min-height: 100vh;
+        padding-top: 80px;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 4rem 0;
+        background: linear-gradient(
+          135deg,
+          rgba(163, 137, 212, 0.1) 0%,
+          rgba(244, 221, 229, 0.2) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 200%;
+        height: 200%;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A389D4' fill-opacity='0.08'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+          repeat;
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .hero-svg {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        opacity: 0.2;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        min-height: 60vh;
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        animation: slideInLeft 0.8s ease-out;
+      }
+
+      .hero-text p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+        animation: slideInLeft 0.8s ease-out 0.2s;
+        animation-fill-mode: both;
+      }
+
+      .cta-button {
+        background: var(--primary);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        animation: pulse 2s infinite;
+      }
+
+      .cta-button:hover {
+        background: #9577cc;
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(163, 137, 212, 0.3);
+      }
+
+      .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        animation: slideInRight 0.8s ease-out;
+      }
+
+      .hero-image img {
+        width: 300px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 20px;
+        border: 4px solid var(--accent-rose);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-placeholder {
+        width: 300px;
+        height: 400px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-rose) 0%,
+          var(--primary) 100%
+        );
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .hero-placeholder:hover {
+        transform: rotate(2deg) scale(1.02);
+      }
+
+      /* Wave Divider */
+      .wave-divider {
+        width: 100%;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+        background: var(--white);
+      }
+
+      .wave-divider svg {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 4rem 0;
+        background: var(--white);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        width: 60px;
+        height: 4px;
+        background: var(--primary);
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: var(--background);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(163, 137, 212, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(163, 137, 212, 0.1),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .service-card:hover::before {
+        left: 100%;
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: white;
+        font-size: 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover .service-icon {
+        transform: rotate(360deg);
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      /* About Page */
+      .about-content {
+        padding: 4rem 0;
+        position: relative;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+        align-items: start;
+        animation: slideInUp 0.8s ease-out;
+      }
+
+      .about-image {
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 15px;
+        border: 3px solid var(--accent-rose);
+      }
+
+      .about-placeholder {
+        width: 100%;
+        max-width: 300px;
+        height: 350px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-sage) 0%,
+          var(--primary) 100%
+        );
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .about-placeholder:hover {
+        transform: scale(1.02);
+      }
+
+      .about-text h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .about-text h3 {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin: 2rem 0 1rem;
+        color: var(--text);
+      }
+
+      .qualifications {
+        background: var(--accent-rose);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+
+      /* Contact Page */
+      .contact-content {
+        padding: 4rem 0;
+        position: relative;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        animation: slideInUp 0.8s ease-out;
+      }
+
+      .contact-form {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        font-family: inherit;
+        transition: border-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        transform: scale(1.01);
+      }
+
+      .contact-info {
+        background: var(--accent-rose);
+        padding: 2rem;
+        border-radius: 15px;
+        height: fit-content;
+        position: relative;
+      }
+
+      .contact-info h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--text);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 1rem;
+      }
+
+      .contact-item i {
+        color: var(--primary);
+        font-size: 1.2rem;
+        width: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-item:hover i {
+        transform: scale(1.2);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--text);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        position: relative;
+      }
+
+      .footer-svg {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        opacity: 0.2;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary);
+        transform: scale(1.2);
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .nav-center-logo {
+          display: none;
+        }
+
+        .hero-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+
+        .hero-text h1 {
+          font-size: 2rem;
+        }
+
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-svg,
+        .footer-svg {
+          display: none;
+        }
+      }
+
+      /* Animations */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(163, 137, 212, 0.7);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 10px rgba(163, 137, 212, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(163, 137, 212, 0);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo-container">
+          <div class="logo">WellnessTherapy</div>
+        </div>
+        <div class="nav-center-logo">
+          <img src="./logo.png" alt="WellnessTherapy Logo" />
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="#" onclick="showPage('home')" class="active">Home</a>
+          </li>
+          <li><a href="#" onclick="showPage('about')">About</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+      <!-- Hero Section -->
+      <section class="hero">
+        <svg class="hero-svg" width="100" height="100" viewBox="0 0 100 100">
+          <path
+            fill="var(--primary)"
+            fill-opacity="0.2"
+            d="M50 20 C30 20 20 30 20 50 C20 70 30 80 50 80 C70 80 80 70 80 50 C80 30 70 20 50 20 Z M50 30 C64.142 30 76 41.858 76 56 C76 70.142 64.142 82 50 82 C35.858 82 24 70.142 24 56 C24 41.858 35.858 30 50 30 Z"
+          />
+        </svg>
+        <div class="hero-container">
+          <div class="hero-text">
+            <h1>Supporting Your Journey to Wellness</h1>
+            <p>
+              Experience compassionate, personalized care through our integrated
+              counselling and physiotherapy services, designed to help you heal
+              holistically.
+            </p>
+            <button class="cta-button" onclick="showPage('contact')">
+              Book a Session
+            </button>
+          </div>
+          <div class="hero-image">
+            <div class="hero-placeholder">
+              <div>
+                <i
+                  class="fas fa-user-md"
+                  style="font-size: 3rem; margin-bottom: 1rem"
+                ></i>
+                <p>Professional<br />Therapist Photo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path
+            fill="var(--background)"
+            d="M0,0 C280,120 720,120 1440,0 L1440,100 L0,100 Z"
+          />
+        </svg>
+      </div>
+
+      <!-- Services Section -->
+      <section class="services">
+        <div class="container">
+          <h2 class="section-title">Our Comprehensive Services</h2>
+          <div class="services-grid">
+            <div class="service-card fade-in">
+              <div class="service-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <h3>Counselling & Therapy</h3>
+              <p>
+                Our evidence-based counselling services provide a safe,
+                confidential space for healing and growth. We specialize in
+                anxiety, depression, trauma, relationship issues, and life
+                transitions using Cognitive Behavioral Therapy (CBT),
+                mindfulness techniques, and person-centered approaches.
+              </p>
+              <ul
+                style="text-align: left; margin-top: 1rem; padding-left: 1rem"
+              >
+                <li>Individual therapy sessions</li>
+                <li>Couples counselling</li>
+                <li>Anxiety and stress management</li>
+                <li>Depression support</li>
+                <li>Trauma-informed care</li>
+              </ul>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">
+                <i class="fas fa-hands-helping"></i>
+              </div>
+              <h3>Physiotherapy</h3>
+              <p>
+                Expert physical rehabilitation combining manual therapy,
+                therapeutic exercise, and cutting-edge treatment modalities. We
+                address musculoskeletal injuries, chronic pain, post-surgical
+                recovery, and movement dysfunction to restore your optimal
+                physical function.
+              </p>
+              <ul
+                style="text-align: left; margin-top: 1rem; padding-left: 1rem"
+              >
+                <li>Manual therapy & massage</li>
+                <li>Exercise prescription</li>
+                <li>Pain management</li>
+                <li>Post-injury rehabilitation</li>
+                <li>Posture correction</li>
+              </ul>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3>Holistic Wellness</h3>
+              <p>
+                Our unique integrated approach recognizes the interconnection
+                between mind and body. We combine psychological and physical
+                therapies to address the root causes of your concerns, promoting
+                lasting wellness and resilience.
+              </p>
+              <ul
+                style="text-align: left; margin-top: 1rem; padding-left: 1rem"
+              >
+                <li>Mind-body connection therapy</li>
+                <li>Stress-related pain treatment</li>
+                <li>Wellness planning</li>
+                <li>Lifestyle counselling</li>
+                <li>Preventive care strategies</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path
+            fill="var(--background)"
+            d="M0,100 C280,0 720,0 1440,100 L1440,100 L0,100 Z"
+          />
+        </svg>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <section
+        style="
+          padding: 4rem 0;
+          background: linear-gradient(
+            135deg,
+            rgba(163, 137, 212, 0.05) 0%,
+            rgba(184, 203, 184, 0.05) 100%
+          );
+        "
+      >
+        <div class="container">
+          <h2 class="section-title">Why Choose Our Practice?</h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 2rem;
+              margin-bottom: 3rem;
+            "
+          >
+            <div style="text-align: center; padding: 1.5rem">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: var(--primary);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: white;
+                  font-size: 1.5rem;
+                "
+              >
+                <i class="fas fa-user-md"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem">Expert Dual Qualification</h3>
+              <p>
+                Unique combination of psychology and physiotherapy expertise
+                under one roof, providing comprehensive care you can't find
+                elsewhere.
+              </p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: var(--accent-sage);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: white;
+                  font-size: 1.5rem;
+                "
+              >
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem">Safe & Confidential</h3>
+              <p>
+                Your privacy and comfort are paramount. We provide a
+                judgment-free environment where you can openly explore your
+                concerns.
+              </p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: var(--accent-rose);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: var(--text);
+                  font-size: 1.5rem;
+                "
+              >
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem">Flexible Scheduling</h3>
+              <p>
+                Evening and weekend appointments available to accommodate your
+                busy lifestyle and work commitments.
+              </p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: var(--primary);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: white;
+                  font-size: 1.5rem;
+                "
+              >
+                <i class="fas fa-heart"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem">Personalized Care</h3>
+              <p>
+                Every treatment plan is tailored specifically to your unique
+                needs, goals, and circumstances for optimal outcomes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path
+            fill="var(--background)"
+            d="M0,0 C280,120 720,120 1440,0 L1440,100 L0,100 Z"
+          />
+        </svg>
+      </div>
+
+      <!-- Testimonials Section -->
+      <section class="services" style="background: var(--background)">
+        <div class="container">
+          <h2 class="section-title">What Our Clients Say</h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 2rem;
+            "
+          >
+            <div
+              style="
+                background: var(--white);
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  color: var(--primary);
+                  font-size: 2rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                "
+              </div>
+              <p style="font-style: italic; margin-bottom: 1.5rem">
+                "The combination of counselling and physiotherapy has been
+                life-changing. Samadhi helped me address both my chronic pain
+                and the anxiety it was causing. I finally feel like myself
+                again."
+              </p>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    background: var(--accent-rose);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--text);
+                    font-weight: 600;
+                  "
+                >
+                  M.K.
+                </div>
+                <div>
+                  <strong>Maria K.</strong><br />
+                  <small style="color: #666">Chronic Pain & Anxiety</small>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                background: var(--white);
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <div
+                style="
+                  color: var(--primary);
+                  font-size: 2rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                "
+              </div>
+              <p style="font-style: italic; margin-bottom: 1.5rem">
+                "After my car accident, I needed both physical and emotional
+                healing. The integrated approach here meant I didn't have to
+                tell my story multiple times to different practitioners."
+              </p>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    background: var(--accent-sage);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: 600;
+                  "
+                >
+                  J.L.
+                </div>
+                <div>
+                  <strong>James L.</strong><br />
+                  <small style="color: #666">Post-Accident Recovery</small>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                background: var(--white);
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <div
+                style="
+                  color: var(--primary);
+                  font-size: 2rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                "
+              </div>
+              <p style="font-style: italic; margin-bottom: 1.5rem">
+                "Samadhi's compassionate approach made me feel heard and
+                understood. The techniques I learned have not only improved my
+                mental health but also my physical well-being."
+              </p>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    background: var(--primary);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: 600;
+                  "
+                >
+                  A.R.
+                </div>
+                <div>
+                  <strong>Amanda R.</strong><br />
+                  <small style="color: #666">Stress & Depression</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path
+            fill="var(--white)"
+            d="M0,100 C280,0 720,0 1440,100 L1440,100 L0,100 Z"
+          />
+        </svg>
+      </div>
+
+      <!-- Process Section -->
+      <section style="padding: 4rem 0; background: var(--white)">
+        <div class="container">
+          <h2 class="section-title">Your Journey to Wellness</h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 2rem;
+              max-width: 800px;
+              margin: 0 auto;
+            "
+          >
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: var(--primary);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: white;
+                  font-size: 1.5rem;
+                  font-weight: 600;
+                "
+              >
+                1
+              </div>
+              <h3 style="margin-bottom: 1rem">Initial Consultation</h3>
+              <p>
+                Comprehensive assessment of your physical and emotional
+                well-being to understand your unique needs.
+              </p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: var(--accent-sage);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: white;
+                  font-size: 1.5rem;
+                  font-weight: 600;
+                "
+              >
+                2
+              </div>
+              <h3 style="margin-bottom: 1rem">Personalized Plan</h3>
+              <p>
+                Development of an integrated treatment plan combining the best
+                of both therapeutic approaches.
+              </p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: var(--accent-rose);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: var(--text);
+                  font-size: 1.5rem;
+                  font-weight: 600;
+                "
+              >
+                3
+              </div>
+              <h3 style="margin-bottom: 1rem">Active Treatment</h3>
+              <p>
+                Regular sessions focused on your goals with continuous progress
+                monitoring and plan adjustments.
+              </p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: var(--primary);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1rem;
+                  color: white;
+                  font-size: 1.5rem;
+                  font-weight: 600;
+                "
+              >
+                4
+              </div>
+              <h3 style="margin-bottom: 1rem">Lasting Wellness</h3>
+              <p>
+                Maintenance strategies and tools to help you sustain your
+                progress and thrive independently.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+      <section class="about-content">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-image">
+              <div class="about-placeholder">
+                <div>
+                  <i
+                    class="fas fa-user-circle"
+                    style="font-size: 3rem; margin-bottom: 1rem"
+                  ></i>
+                  <p>About Me<br />Photo</p>
+                </div>
+              </div>
+
+              <!-- Professional Achievements -->
+              <div
+                style="
+                  margin-top: 2rem;
+                  padding: 1.5rem;
+                  background: var(--accent-rose);
+                  border-radius: 15px;
+                "
+              >
+                <h4 style="margin-bottom: 1rem; color: var(--text)">
+                  Professional Recognition
+                </h4>
+                <div style="font-size: 0.9rem; line-height: 1.8">
+                  <p>
+                    <i
+                      class="fas fa-award"
+                      style="color: var(--primary); margin-right: 0.5rem"
+                    ></i>
+                    Excellence in Integrated Care Award 2023
+                  </p>
+                  <p>
+                    <i
+                      class="fas fa-certificate"
+                      style="color: var(--primary); margin-right: 0.5rem"
+                    ></i>
+                    Registered with Psychology Board
+                  </p>
+                  <p>
+                    <i
+                      class="fas fa-handshake"
+                      style="color: var(--primary); margin-right: 0.5rem"
+                    ></i>
+                    Member of Physiotherapy Association
+                  </p>
+                  <p>
+                    <i
+                      class="fas fa-users"
+                      style="color: var(--primary); margin-right: 0.5rem"
+                    ></i>
+                    500+ Clients Successfully Treated
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-text">
+              <h2>Miss Samadhi Peiris, M.A., B.Sc.</h2>
+              <h3 style="margin-top: 0px !important">Chocolate Kella 🖤💜</h3>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  color: #666;
+                  margin-bottom: 2rem;
+                  font-style: italic;
+                "
+              >
+                "Healing happens when we address both the mind and body as
+                interconnected systems working toward your optimal wellness."
+              </p>
+
+              <div class="qualifications">
+                <strong>Education & Certifications:</strong><br />
+                • Master of Arts in Clinical Psychology - University of Sri
+                Jayewardenepura<br />
+                • Bachelor of Science in Physiotherapy - University of Sri
+                Jayewardenepura<br />
+                • Advanced Certificate in Cognitive Behavioral Therapy<br />
+                • Certified Trauma-Informed Care Practitioner<br />
+                • Licensed Remedial Massage Therapist<br />
+                • Mindfulness-Based Stress Reduction (MBSR) Facilitator
+              </div>
+
+              <h3>My Journey into Integrated Wellness</h3>
+              <p>
+                My path to becoming a dual-qualified practitioner began during
+                my physiotherapy studies when I noticed how closely physical
+                pain was connected to emotional well-being. After treating
+                countless clients with chronic conditions, I realized that
+                addressing only the physical symptoms wasn't enough for lasting
+                healing.
+              </p>
+
+              <p>
+                This revelation led me to pursue advanced studies in clinical
+                psychology, specializing in how psychological factors influence
+                physical health. Over the past 8 years, I've developed a unique
+                integrated approach that has helped hundreds of clients achieve
+                breakthrough results by treating both mind and body
+                simultaneously.
+              </p>
+
+              <h3>Our Mission</h3>
+              <p>
+                To empower healing with compassion and personalized care,
+                creating a safe space where every individual can flourish and
+                achieve their wellness goals. I believe that everyone deserves
+                access to comprehensive care that honors both their physical and
+                emotional experiences.
+              </p>
+
+              <h3>Our Treatment Philosophy</h3>
+              <p>My practice is built on four core principles:</p>
+              <ul style="margin: 1rem 0; padding-left: 1.5rem">
+                <li>
+                  <strong>Holistic Integration:</strong> Understanding that
+                  physical and mental health are inseparable
+                </li>
+                <li>
+                  <strong>Evidence-Based Practice:</strong> Using scientifically
+                  proven techniques and staying current with research
+                </li>
+                <li>
+                  <strong>Client-Centered Care:</strong> You are the expert on
+                  your own experience; I'm here to guide and support
+                </li>
+                <li>
+                  <strong>Culturally Sensitive Approach:</strong> Respecting
+                  diverse backgrounds and individual values
+                </li>
+              </ul>
+
+              <h3>Specialized Treatment Areas</h3>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1.5rem;
+                  margin: 1.5rem 0;
+                "
+              >
+                <div>
+                  <h4 style="color: var(--primary); margin-bottom: 0.5rem">
+                    Mental Health:
+                  </h4>
+                  <ul style="font-size: 0.9rem; padding-left: 1rem">
+                    <li>Anxiety & Panic Disorders</li>
+                    <li>Depression & Mood Disorders</li>
+                    <li>PTSD & Trauma Recovery</li>
+                    <li>Stress Management</li>
+                    <li>Relationship Counselling</li>
+                    <li>Life Transitions</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="color: var(--primary); margin-bottom: 0.5rem">
+                    Physical Health:
+                  </h4>
+                  <ul style="font-size: 0.9rem; padding-left: 1rem">
+                    <li>Chronic Pain Management</li>
+                    <li>Sports Injury Rehabilitation</li>
+                    <li>Postural Dysfunction</li>
+                    <li>Workplace Injuries</li>
+                    <li>Post-Surgical Recovery</li>
+                    <li>Fibromyalgia & Chronic Fatigue</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h3>Treatment Modalities</h3>
+              <p>
+                I combine the most effective techniques from both disciplines:
+              </p>
+              <div
+                style="
+                  background: var(--background);
+                  padding: 1.5rem;
+                  border-radius: 10px;
+                  margin: 1rem 0;
+                "
+              >
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 2rem;
+                  "
+                >
+                  <div>
+                    <h4 style="color: var(--accent-sage); margin-bottom: 1rem">
+                      Psychological Approaches:
+                    </h4>
+                    <p>
+                      • Cognitive Behavioral Therapy (CBT)<br />
+                      • Acceptance and Commitment Therapy<br />
+                      • Mindfulness-Based Interventions<br />
+                      • Solution-Focused Brief Therapy<br />
+                      • Trauma-Informed Therapy
+                    </p>
+                  </div>
+                  <div>
+                    <h4 style="color: var(--accent-sage); margin-bottom: 1rem">
+                      Physical Therapies:
+                    </h4>
+                    <p>
+                      • Manual Therapy & Joint Mobilization<br />
+                      • Therapeutic Exercise Prescription<br />
+                      • Dry Needling & Trigger Point Release<br />
+                      • Postural Re-education<br />
+                      • Pain Education & Management
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <h3>Beyond the Clinic</h3>
+              <p>
+                When I'm not helping clients, you'll find me practicing yoga,
+                hiking local trails, or reading the latest research in
+                integrated health approaches. I believe in modeling the wellness
+                practices I recommend, and I'm passionate about continuous
+                learning to provide you with the most effective, up-to-date care
+                possible.
+              </p>
+
+              <div
+                style="
+                  background: var(--primary);
+                  color: white;
+                  padding: 2rem;
+                  border-radius: 15px;
+                  margin: 2rem 0;
+                  text-align: center;
+                "
+              >
+                <h3 style="margin-bottom: 1rem">
+                  Ready to Begin Your Healing Journey?
+                </h3>
+                <p style="margin-bottom: 1.5rem">
+                  I'm here to support you every step of the way with
+                  compassionate, expert care tailored specifically to your
+                  needs.
+                </p>
+                <button
+                  class="cta-button"
+                  onclick="showPage('contact')"
+                  style="background: white; color: var(--primary)"
+                >
+                  Schedule Your Consultation
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+      <section class="contact-content">
+        <div class="container">
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="contact-grid">
+            <div class="contact-form">
+              <h3>Send us a Message</h3>
+              <form>
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="service">Service Interest</label>
+                  <input
+                    type="text"
+                    id="service"
+                    name="service"
+                    placeholder="Counselling, Physiotherapy, or Both"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell us how we can help you..."
+                  ></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+              </form>
+            </div>
+
+            <div class="contact-info">
+              <h3>Contact Information</h3>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(555) 123-4567</span>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@wellnesstherapy.com</span>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>123 Wellness Street<br />Healing Heights, WH 12345</span>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <strong>Hours:</strong><br />
+                  Mon-Fri: 9:00 AM - 6:00 PM<br />
+                  Sat: 10:00 AM - 4:00 PM<br />
+                  Sun: Closed
+                </div>
+              </div>
+
+              <div
+                style="
+                  margin-top: 2rem;
+                  padding: 1rem;
+                  background: rgba(163, 137, 212, 0.1);
+                  border-radius: 10px;
+                "
+              >
+                <p>
+                  <strong>New Patient Special:</strong> First consultation
+                  includes a comprehensive wellness assessment at no additional
+                  cost.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <svg class="footer-svg" width="80" height="80" viewBox="0 0 80 80">
+        <path
+          fill="var(--accent-rose)"
+          fill-opacity="0.2"
+          d="M40 10 C25 10 15 25 15 40 C15 55 25 65 40 65 C55 65 65 55 65 40 C65 25 55 10 40 10 Z M40 20 C48.284 20 55 26.716 55 35 C55 43.284 48.284 50 40 50 C31.716 50 25 43.284 25 35 C25 26.716 31.716 20 40 20 Z"
+        />
+      </svg>
+      <div class="container">
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>
+          &copy; 2025 WellnessTherapy. All rights reserved. | Confidential &
+          Professional Care | Developed by your
+          <span style="color: #8b5cf6; font-weight: 600">Shadow Light</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function showPage(pageId) {
+        // Hide all pages
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((page) => {
+          page.classList.remove("active");
+        });
+
+        // Show selected page
+        document.getElementById(pageId).classList.add("active");
+
+        // Update navigation
+        const navLinks = document.querySelectorAll(".nav-links a");
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+        event.target.classList.add("active");
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+      }
+
+      // Form submission
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert(
+          "Thank you for your message! We will get back to you within 24 hours."
+        );
+        this.reset();
+      });
+
+      // Fade in animations on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = "0.2s";
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe service cards
+      document.querySelectorAll(".service-card").forEach((card) => {
+        observer.observe(card);
+      });
+    </script>
+  </body>
+</html>
